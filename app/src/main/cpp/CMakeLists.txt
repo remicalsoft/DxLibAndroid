@@ -31,7 +31,15 @@ add_library(
         native-lib
         SHARED
         # List C/C++ source files with relative paths to this CMakeLists.txt.
-        native-lib.cpp)
+        native-lib.cpp
+        Bullet.cpp
+        Data.cpp
+        Main.cpp
+        MathUtils.cpp
+        MainScene.cpp
+        PrepareScene.cpp
+        Object.cpp
+)
 
 find_library(
         log-lib

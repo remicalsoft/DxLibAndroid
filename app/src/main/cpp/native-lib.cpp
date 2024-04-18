@@ -1,18 +1,17 @@
 #include "DxLib.h"
+#include "Main.h"
+#include "Define.h"
 
 // プログラムは android_main から始まります
 int android_main( void )
 {
-    if( DxLib_Init() == -1 )		// ＤＸライブラリ初期化処理
-    {
-        return -1 ;			// エラーが起きたら直ちに終了
+    Main main;
+    SetGraphMode(SCREEN_W, SCREEN_H, 32);
+    DxLib_Init(), SetDrawScreen( DX_SCREEN_BACK ); //ウィンドウモード変更と初期化と裏画面設定
+    main.onCreate();
+    while( ScreenFlip()==0 && ProcessMessage()==0 && ClearDrawScreen()==0 ){
+        main.loop();
     }
-
-    DrawBox( 220, 140, 420, 340, GetColor( 255,255,255 ), TRUE ) ;	// 四角形を描画する
-
-    WaitKey() ;				// キー入力待ち
-
-    DxLib_End() ;				// ＤＸライブラリ使用の終了処理
-
-    return 0 ;					// ソフトの終了
+    DxLib_End(); // DXライブラリ終了処理
+    return 0;
 }
